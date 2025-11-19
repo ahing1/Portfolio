@@ -45,13 +45,22 @@ const ProjectCard = ({ title, description, tags = [] }) => (
 const ExperienceTimeline = () => {
   const items = [
     {
-      side: "right",
+      side: "left",
       icon: <GraduationCap className="h-5 w-5" />,
       title: "Stevens Institute of Technology | Student",
       subtitle: "Hoboken, NJ",
       description:
         "Currently studying Computer Science at Stevens Institute of Technology, I will graduate with my Master's in May 2026",
       period: "September 2025 - May 2026",
+    },
+    {
+      side: "right",
+      icon: <Briefcase className="h-5 w-5" />,
+      title: "Anote AI | Machine Learning Engineer",
+      subtitle: "Las Vegas, NV",
+      description:
+        "Machine Learning Engineer for Anote AI participating in the Air Force's DASH 3 program for creating Battle COA's with the help of AI.",
+      period: "September 2025 - October 2025",
     },
     {
       side: "left",
