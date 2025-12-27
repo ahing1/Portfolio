@@ -89,7 +89,10 @@ export const ContactSection = () => {
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-indigo-600 px-6 py-2 text-sm font-semibold text-black hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="w-full rounded-xl bg-indigo-600 px-6 py-2 text-sm font-semibold
+                      text-white hover:bg-indigo-500
+                      focus:outline-none focus:ring-2 focus:ring-indigo-500
+                      focus:ring-offset-2 focus:ring-offset-black dark:focus:ring-offset-zinc-900"
                 >
                   {status.sending ? "Sending…" : "Send"}
                 </button>

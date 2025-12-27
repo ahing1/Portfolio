@@ -219,15 +219,23 @@ export default function App() {
               Hello, I'm <span className="bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-transparent">Andrew</span>. I'm a <span className="font-extrabold">Software Engineer</span> currently pursuing a <span className="font-extrabold">Masters degree</span> in Computer Science at <span className="font-extrabold">Stevens Institute of Technology</span> and looking for full-time opportunities.
             </h1>
             <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="#contact"
+              className="
+                group inline-flex items-center justify-center rounded-full
+                px-5 py-2 text-sm font-semibold
+                transition-all duration-200 hover:scale-110
+                bg-black !text-white hover:bg-zinc-800
+                dark:bg-white dark:!text-black dark:hover:bg-zinc-200
+              "
+            >
+              Contact
+              <span className="ml-1 transition-colors duration-200 group-hover:text-blue-500">
+                →
+              </span>
+            </a>
               <a
-                href="#contact"
-                className="group inline-flex items-center justify-center rounded-full bg-black px-5 py-2 text-sm font-semibold text-white shadow hover:bg-zinc-800 transform transition-transform duration-200 hover:scale-110"
-              >
-                Contact
-                <span className="ml-1 transition-colors duration-200 group-hover:text-blue-500">→</span>
-              </a>
-              <a
-                href="/Andrew_Hing_Resume_8-25.pdf"
+                href="/Andrew_Hing_Resume_1-26.pdf"
                 download
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-zinc-900 shadow ring-1 ring-zinc-400 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-100 dark:ring-zinc-600 dark:hover:bg-zinc-800 transform transition-transform duration-200 hover:scale-110"
               >
@@ -288,14 +296,14 @@ export default function App() {
               tags={["Python", "LangGraph", "DSPy", "Kafka", "PostgreSQL", "Docker", "GCP"]}
             />
             <ProjectCard
+              title="Prospra"
+              description="This was my first attempt at a SaaS project for people trying to get into tech. A Next.js frontend, FastAPI backend with the ChatGPT API, Clerk for authentication, Stripe for billing. Dockerized and deployed on an AWS EC2 instance."
+              tags={["Next.js", "FastAPI", "Clerk", "Stripe", "Docker", "AWS"]}
+            />
+            <ProjectCard
               title="Fraud Detector"
               description="This was my first personal project that I made from end-to-end. A React UI, Express API, Flask ML microservice hosting a Random Forest model. Dockerized and deployed on AWS EC2 behind Nginx."
               tags={["React", "Express", "Flask", "Docker", "AWS"]}
-            />
-            <ProjectCard
-              title="Smart Trainer"
-              description="This was a passion project that I wanted to do since I like to workout. An in-browser fitness coach that tracks form and reps from your webcam using pose estimation, giving real-time feedback and summaries after each set."
-              tags={["React", "Flask", "Tensorflow.js", "Computer Vision", "Docker", "AWS"]}
             />
           </div>
         </section>
