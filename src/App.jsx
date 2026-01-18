@@ -235,7 +235,7 @@ export default function App() {
               </span>
             </a>
               <a
-                href="/Andrew_Hing_Resume_1-26.pdf"
+                href="/Andrew_Hing_Resume.pdf"
                 download
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-zinc-900 shadow ring-1 ring-zinc-400 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-100 dark:ring-zinc-600 dark:hover:bg-zinc-800 transform transition-transform duration-200 hover:scale-110"
               >
