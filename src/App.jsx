@@ -5,6 +5,9 @@ import { ContactSection } from "./components/Contact.jsx";
 import { Hero } from "./components/Hero.jsx";
 import { About } from "./components/About.jsx";
 import { Projects } from "./components/Projects.jsx";
+import { Stack } from "./components/Stack.jsx";
+import { ExperienceLog } from "./components/ExperienceLog.jsx";
+import { Footer } from "./components/Footer.jsx";
 
 export default function App() {
   return (
@@ -14,15 +17,10 @@ export default function App() {
           <Hero />
           <About />
           <Projects />
-          <section id="skills" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-20">
-            <h2 className="font-mono text-xl">$ stack</h2>
-            <p className="mt-4 text-ink-dim">Stack placeholder — Task 12.</p>
-          </section>
-          <section id="experience" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-20">
-            <h2 className="font-mono text-xl">$ git log --experience</h2>
-            <p className="mt-4 text-ink-dim">Experience placeholder — Task 13.</p>
-          </section>
+          <Stack />
+          <ExperienceLog />
           <ContactSection />
+          <Footer />
         </Frame>
       </PaletteProvider>
     </ThemeProvider>
