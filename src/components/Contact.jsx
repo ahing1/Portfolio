@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
@@ -27,99 +28,95 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="mx-auto max-w-3xl px-4 py-20 scroll-mt-24">
-      <h2 className="mb-6 text-2xl font-bold">Contact</h2>
+    <section id="contact" className="mx-auto max-w-5xl px-4 py-24 scroll-mt-20">
+      <h2 className="mb-8 font-mono text-sm text-ink-dim">
+        <span className="text-accent">$</span> ./contact.sh
+      </h2>
 
-      <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-        {status.ok ? (
-          <p className="text-green-600 dark:text-green-400 font-medium">
-            Thanks for your message! I'll get back to you soon.
-          </p>
-        ) : (
-          <>
-            <p className="mb-4 text-zinc-700 dark:text-zinc-300">
-              Have an opportunity or want to chat? Send me a message!
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_auto]">
+        <div>
+          {status.ok ? (
+            <p className="font-mono text-sm text-ok">
+              ✓ sent — I'll get back to you soon.
             </p>
-
+          ) : (
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="grid grid-cols-1 gap-4 md:grid-cols-2"
+              className="space-y-5 font-mono text-sm"
             >
-              <div>
-                <label htmlFor="user_name" className="sr-only">Name</label>
-                <input
-                  id="user_name"
-                  type="text"
-                  name="user_name"
-                  required
-                  autoComplete="name"
-                  placeholder="Name"
-                  className="w-full rounded-xl border border-zinc-300 bg-transparent px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:border-zinc-700"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="user_email" className="sr-only">Email</label>
-                <input
-                  id="user_email"
-                  type="email"
-                  name="user_email"
-                  required
-                  autoComplete="email"
-                  placeholder="Email"
-                  className="w-full rounded-xl border border-zinc-300 bg-transparent px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:border-zinc-700"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label htmlFor="message" className="sr-only">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  placeholder="Message"
-                  className="h-32 w-full rounded-xl border border-zinc-300 bg-transparent px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:border-zinc-700"
-                />
-              </div>
-
-              {/* Honeypot anti-spam (EmailJS ignores it if filled) */}
+              <Field label="> name:" id="user_name" name="user_name" type="text" autoComplete="name" required />
+              <Field label="> email:" id="user_email" name="user_email" type="email" autoComplete="email" required />
+              <Field
+                label="> message:"
+                id="message"
+                name="message"
+                as="textarea"
+                rows={6}
+                required
+              />
               <input type="text" name="subject" className="hidden" tabIndex={-1} autoComplete="off" />
-
-              <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  className="
-                    btn-reset w-full rounded-xl px-6 py-3 text-sm font-semibold
-                    bg-indigo-600 text-white hover:bg-indigo-500
-                    shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
-                    focus:ring-offset-white
-
-                    dark:bg-indigo-500 dark:hover:bg-indigo-400
-                    dark:shadow-[0_0_0_1px_rgba(255,255,255,0.10),0_10px_30px_rgba(0,0,0,0.45)]
-                    dark:focus:ring-offset-zinc-900
-                  "
-                >
-                  {status.sending ? "Sending…" : "Send"}
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="border border-accent px-4 py-2 text-ink transition-colors duration-150 hover:bg-accent hover:text-bg disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={status.sending}
+              >
+                {status.sending ? "$ sending…" : "$ send →"}
+              </button>
+              {status.err && (
+                <p className="text-warn">! {String(status.err)}</p>
+              )}
             </form>
+          )}
+        </div>
 
-            {status.err && (
-              <p className="mt-3 text-sm text-rose-600 dark:text-rose-400">
-                {String(status.err)}
-              </p>
-            )}
-
-            <p className="mt-3 text-xs text-zinc-500">
-              * Powered by EmailJS. Your message is sent via their service.
-            </p>
-          </>
-        )}
+        <aside className="font-mono text-sm">
+          <h3 className="mb-4 text-xs text-ink-dim">// elsewhere</h3>
+          <ul className="space-y-3">
+            <li>
+              <a href="https://github.com/ahing1" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
+                <Github className="h-4 w-4" /> github →
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/andrew-hing21/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
+                <Linkedin className="h-4 w-4" /> linkedin →
+              </a>
+            </li>
+            <li>
+              <a href="mailto:ahing910@gmail.com" className="inline-flex items-center gap-2 hover:text-accent">
+                <Mail className="h-4 w-4" /> email →
+              </a>
+            </li>
+          </ul>
+        </aside>
       </div>
     </section>
   );
-}
+};
+
+const Field = ({ label, id, name, type = "text", as = "input", rows, autoComplete, required }) => {
+  const cls =
+    "block w-full border-0 border-b border-rule bg-transparent py-1.5 font-mono text-sm text-ink outline-none focus:border-b-2 focus:border-accent placeholder:text-ink-dim/60";
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1 block text-ink-dim">
+        {label}
+      </label>
+      {as === "textarea" ? (
+        <textarea id={id} name={name} rows={rows} required={required} className={cls} />
+      ) : (
+        <input
+          id={id}
+          name={name}
+          type={type}
+          required={required}
+          autoComplete={autoComplete}
+          className={cls}
+        />
+      )}
+    </div>
+  );
+};
 
 export default ContactSection;
