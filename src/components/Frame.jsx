@@ -2,6 +2,7 @@ import { NavRail } from "./NavRail.jsx";
 import { StatusBar } from "./StatusBar.jsx";
 import { sections } from "../data/sections.js";
 import { useActiveSection } from "../lib/useActiveSection.js";
+import { usePalette } from "../lib/usePalette.jsx";
 
 const LeftGutter = () => {
   const active = useActiveSection(sections.map((s) => s.id));
@@ -22,28 +23,41 @@ const LeftGutter = () => {
   );
 };
 
+const HeaderInner = () => {
+  const { openPalette } = usePalette();
+  return (
+    <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4">
+      <a href="#home" className="font-mono text-sm font-bold tracking-tight">
+        <span className="text-accent">~/</span>andrew
+      </a>
+      <NavRail />
+      <button
+        type="button"
+        onClick={openPalette}
+        className="font-mono text-sm md:hidden"
+        aria-label="open menu"
+      >
+        [≡]
+      </button>
+      <div className="hidden items-center gap-1.5 md:flex" aria-hidden>
+        <span className="h-2.5 w-2.5 rounded-full bg-rule" />
+        <span className="h-2.5 w-2.5 rounded-full bg-rule" />
+        <span className="h-2.5 w-2.5 rounded-full bg-rule" />
+      </div>
+    </div>
+  );
+};
+
 export const Frame = ({ children }) => (
   <div className="min-h-screen bg-bg text-ink">
     <header
       className="sticky top-0 z-40 border-b border-rule bg-bg/95 backdrop-blur"
       style={{ height: "var(--header-h)" }}
     >
-      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4">
-        <a href="#home" className="font-mono text-sm font-bold tracking-tight">
-          <span className="text-accent">~/</span>andrew
-        </a>
-        <NavRail />
-        <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="h-2.5 w-2.5 rounded-full bg-rule" />
-          <span className="h-2.5 w-2.5 rounded-full bg-rule" />
-          <span className="h-2.5 w-2.5 rounded-full bg-rule" />
-        </div>
-      </div>
+      <HeaderInner />
     </header>
-
     <LeftGutter />
     <main className="pb-[var(--status-h)]">{children}</main>
-
     <StatusBar />
   </div>
 );
