@@ -22,6 +22,15 @@ export const CommandPalette = () => {
     }
   }, [open, setActiveIndex]);
 
+  const runCommand = useCallback(
+    (cmd) => {
+      if (!cmd) return;
+      cmd.run({ toggleTheme, showToast });
+      setOpen(false);
+    },
+    [toggleTheme, setOpen],
+  );
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -48,15 +57,6 @@ export const CommandPalette = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, filtered, activeIndex, setOpen, setActiveIndex, runCommand]);
-
-  const runCommand = useCallback(
-    (cmd) => {
-      if (!cmd) return;
-      cmd.run({ toggleTheme, showToast });
-      setOpen(false);
-    },
-    [toggleTheme, setOpen],
-  );
 
   if (!open) return null;
 
