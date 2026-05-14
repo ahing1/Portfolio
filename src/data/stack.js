@@ -1,0 +1,25 @@
+export const stack = {
+  languages: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "HTML", "CSS"],
+  frameworks: [
+    "Spring Boot",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express",
+    "FastAPI",
+    "LangGraph",
+    "DSPy",
+    "Celery",
+    "Docker",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "AWS",
+    "GitHub Actions",
+  ],
+  focus: [
+    "AI Agents & Multi-Agent Systems",
+    "Backend Engineering",
+    "Full-Stack Development",
+  ],
+};
