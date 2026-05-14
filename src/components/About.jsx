@@ -1,10 +1,14 @@
+import { useEnterOnView } from "../lib/useEnterOnView.js";
+
 const InlineCode = ({ children }) => (
   <code className="bg-bg-elev px-1.5 py-0.5 font-mono text-[0.92em]">{children}</code>
 );
 
-export const About = () => (
+export const About = () => {
+  const [headerRef, headerVisible] = useEnterOnView();
+  return (
   <section id="about" className="mx-auto max-w-3xl px-4 py-24 scroll-mt-20">
-    <h2 className="mb-8 font-mono text-sm text-ink-dim">
+    <h2 ref={headerRef} className={`mb-8 font-mono text-sm text-ink-dim ${headerVisible ? "section-enter" : "opacity-0"}`}>
       <span className="text-accent">$</span> cat about.md
     </h2>
     <div className="prose-block space-y-6 leading-relaxed">
@@ -35,4 +39,5 @@ export const About = () => (
       </p>
     </div>
   </section>
-);
+  );
+};

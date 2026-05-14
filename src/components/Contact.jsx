@@ -1,10 +1,12 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useEnterOnView } from "../lib/useEnterOnView.js";
 
 export const ContactSection = () => {
   const formRef = useRef(null);
   const [status, setStatus] = useState({ sending: false, ok: false, err: null });
+  const [headerRef, headerVisible] = useEnterOnView();
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="mx-auto max-w-5xl px-4 py-24 scroll-mt-20">
-      <h2 className="mb-8 font-mono text-sm text-ink-dim">
+      <h2 ref={headerRef} className={`mb-8 font-mono text-sm text-ink-dim ${headerVisible ? "section-enter" : "opacity-0"}`}>
         <span className="text-accent">$</span> ./contact.sh
       </h2>
 
