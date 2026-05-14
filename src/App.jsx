@@ -1,5 +1,5 @@
-import { ThemeProvider } from "./lib/useTheme.js";
-import { PaletteProvider } from "./lib/usePalette.js";
+import { ThemeProvider } from "./lib/useTheme.jsx";
+import { PaletteProvider } from "./lib/usePalette.jsx";
 import { Frame } from "./components/Frame.jsx";
 import { ContactSection } from "./components/Contact.jsx";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { sections } from "../data/sections.js";
 import { useActiveSection } from "../lib/useActiveSection.js";
-import { usePalette } from "../lib/usePalette.js";
+import { usePalette } from "../lib/usePalette.jsx";
 
 const fmtTime = () => {
   const d = new Date();
