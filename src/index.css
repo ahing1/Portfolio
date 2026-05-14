@@ -1,70 +1,122 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter-tight";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --bg: #F5EFE4;
+  --bg-elev: #EFE7D6;
+  --ink: #1A1814;
+  --ink-dim: #6B6457;
+  --rule: #D9CFBC;
+  --accent: #C44A1E;
+  --link: #4B6584;
+  --ok: #5C7A3F;
+  --warn: #B57A1F;
+  --header-h: 56px;
+  --status-h: 28px;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-family: "Inter Tight Variable", system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-a {
-  font-weight: 500;
-  text-decoration: inherit;
+.dark {
+  --bg: #0A0A0F;
+  --bg-elev: #15151D;
+  --ink: #E8C77A;
+  --ink-dim: #9A8E7A;
+  --rule: #2A2730;
+  --accent: #FF8A4C;
+  --link: #6FD1E6;
+  --ok: #7FD17F;
+  --warn: #F5C770;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-link: var(--link);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter Tight Variable", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--ink);
+  transition: background-color 240ms cubic-bezier(0.2, 0, 0, 1),
+              color 240ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a { color: inherit; text-decoration: none; }
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-button:not(.btn-reset) {
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 0.7rem 1.1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  color: var(--text);
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-  cursor: pointer;
-  transition: transform 120ms ease, border-color 160ms ease, background-color 160ms ease;
+.caret-blink {
+  display: inline-block;
+  animation: blink 1s steps(1) infinite;
 }
 
-button:not(.btn-reset):hover {
-  border-color: var(--border-2);
-  transform: translateY(-1px);
+@keyframes chip-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
 }
 
-button:not(.btn-reset):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(138, 180, 255, 0.18);
+.chip-pulse {
+  animation: chip-pulse 2s ease-in-out infinite;
 }
 
+@keyframes section-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.section-enter {
+  animation: section-enter 280ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@keyframes backdrop-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes palette-fade-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.palette-backdrop-enter { animation: backdrop-fade 120ms cubic-bezier(0.2, 0, 0, 1) both; }
+.palette-enter { animation: palette-fade-down 180ms cubic-bezier(0.2, 0, 0, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
   }
-
-  button:not(.btn-reset) {
-    background-color: #f9f9f9;
-  }
+  html { scroll-behavior: auto; }
 }
-
-
-html { scroll-behavior: smooth; }
