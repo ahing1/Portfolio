@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { commands } from "../data/commands.js";
 import { usePalette } from "../lib/usePalette.jsx";
 import { useTheme } from "../lib/useTheme.jsx";
-import { showToast } from "./Toast.jsx";
+import { showToast } from "../lib/toast.js";
 
 export const CommandPalette = () => {
   const { open, query, activeIndex, setOpen, setQuery, setActiveIndex } = usePalette();
@@ -47,13 +47,16 @@ export const CommandPalette = () => {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, filtered, activeIndex, setOpen, setActiveIndex]);
+  }, [open, filtered, activeIndex, setOpen, setActiveIndex, runCommand]);
 
-  const runCommand = (cmd) => {
-    if (!cmd) return;
-    cmd.run({ toggleTheme, showToast });
-    setOpen(false);
-  };
+  const runCommand = useCallback(
+    (cmd) => {
+      if (!cmd) return;
+      cmd.run({ toggleTheme, showToast });
+      setOpen(false);
+    },
+    [toggleTheme, setOpen],
+  );
 
   if (!open) return null;
 

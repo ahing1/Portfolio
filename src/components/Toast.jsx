@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
-
-let listener = null;
-
-export const showToast = (msg) => {
-  if (listener) listener(msg);
-};
+import { registerToastListener, unregisterToastListener } from "../lib/toast.js";
 
 export const Toast = () => {
   const [msg, setMsg] = useState(null);
 
   useEffect(() => {
-    listener = (m) => {
+    registerToastListener((m) => {
       setMsg(m);
       setTimeout(() => setMsg(null), 1500);
-    };
+    });
     return () => {
-      listener = null;
+      unregisterToastListener();
     };
   }, []);
 
