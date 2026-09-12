@@ -1034,7 +1034,7 @@ export const Hero = () => (
         <p className="mt-8 font-mono text-sm text-ink-dim md:text-base">
           <span className="text-accent">&gt;</span>{" "}
           <Typer
-            text="software engineer · agentic systems · open to full-time roles_"
+            text="ai & software engineer · agentic systems · open to full-time roles_"
             storageKey="hero_typed"
           />
         </p>
